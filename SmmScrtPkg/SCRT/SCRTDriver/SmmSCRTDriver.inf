@@ -1,0 +1,106 @@
+#/*++
+#
+#Copyright (c) 2010, Intel Corporation
+#All rights reserved. This program and the accompanying materials
+#are licensed and made available under the terms and conditions of the Eclipse Public License
+#which accompanies this distribution.  The full text of the license may be found at
+#http://www.opensource.org/licenses/eclipse-1.0.php
+#
+#THE PROGRAM IS DISTRIBUTED UNDER THE ECLIPSE PUBLIC LICENSE (EPL) ON AN "AS IS" BASIS,
+#WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+#
+#Module Name:
+#
+#  SMMSCRTDRIVER.inf
+#
+#--*/
+
+
+
+[defines]
+BASE_NAME            = SmmScrtDriver
+FILE_GUID            = B7CFF4B4-AF40-4771-B1A6-E2065345CE1F
+COMPONENT_TYPE       = RT_DRIVER
+
+
+[sources.ia32]
+  ia32\Io.c
+  ia32\Io.h
+  ia32\IoAccess.asm
+  ia32\port80.asm
+  ia32\Dump.c
+    
+[sources.x64]
+  x64\Io.c
+  x64\Io.h
+  x64\IoAccess.asm
+  x64\port80.asm
+  x64\Dump.c
+
+[sources.common]
+  Guid.h
+  Guid.c
+  print.c
+  TestCase.c
+  Debug.c
+  SCRTDriver.c
+  SCRTDriver.h
+  ..\SmmSCRT\SmmCompliant\RtSmmCompliantBbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmCpu\RtSmmCpuBbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmGpiDispatch2\RtSmmGpiDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmIoTrapDispatch2\RtSmmIoTrapDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmPciRootBridgeIo\RtSmmPciRootBridgeIoBbTest.c
+  ..\SmmSCRT\Protocols\SmmPeriTimerDispatch2\RtSmmPeriTimerDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmPowerButtonDispatch2\RtSmmPowerButtonDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmRSCHandler\RtSmmRSCHandlerBbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmS3SaveState\RtSmmS3SaveStateBbTest.c
+  ..\SmmSCRT\Protocols\SmmStatusCode\RtSmmStatusCodeBbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmStdbyButtDispatch2\RtSmmStdbyButtDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmSwDispatch2\RtSmmSwDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmSxDispatch2\RtSmmSxDispatch2BbTestRequired.c
+  ..\SmmSCRT\Protocols\SmmUsbDispatch2\RtSmmUsbDispatch2BbTestRequired.c
+  ..\SmmSCRT\Libraries\SmmPciLib\RtSmmPciLibBbTest.c
+  ..\SmmSCRT\Libraries\SmmIoLib\RtSmmIoLibBbTest.c
+  ..\SmmSCRT\Libraries\SmmMemAllocLib\RtSmmMemAllocLibBbTest.c
+  ..\SmmSCRT\Libraries\SmmPeriodicSmiLib\RtSmmPeriodicSmiLibBbTest.c
+  ..\SmmSCRT\Libraries\SmmServicesTableLib\RtSmmServicesTableLibBbTest.c
+  ..\SmmSCRT\Services\SmiHandlerRegister\RtSmiHandlerRegisterBbTest.c
+  ..\SmmSCRT\Services\SmiHandlerUnRegister\RtSmiHandlerUnRegisterBbTest.c
+  ..\SmmSCRT\Services\SmiManage\RtSmiManageBbTest.c
+  ..\SmmSCRT\Services\SmmAllocatePages\RtSmmAllocatePagesBbTest.c
+  ..\SmmSCRT\Services\SmmAllocatePool\RtSmmAllocatePoolBbTest.c
+  ..\SmmSCRT\Services\SmmFreePages\RtSmmFreePagesBbTest.c
+  ..\SmmSCRT\Services\SmmFreePool\RtSmmFreePoolBbTest.c
+  ..\SmmSCRT\Services\SmmHandleProtocol\RtSmmHandleProtocolBbTest.c
+  ..\SmmSCRT\Services\SmmInstallConfigTable\RtSmmInstallConfigTableBbTest.c
+  ..\SmmSCRT\Services\SmmInstallProtocol\RtSmmInstallProtocolBbTest.c
+  ..\SmmSCRT\Services\SmmIo\RtSmmIoBbTest.c
+  ..\SmmSCRT\Services\SmmLocateHandle\RtSmmLocateHandleBbTest.c
+  ..\SmmSCRT\Services\SmmLocateProtocol\RtSmmLocateProtocolBbTest.c
+  ..\SmmSCRT\Services\SmmRegProtocolNotify\RtSmmRegProtocolBbTest.c
+  ..\SmmSCRT\Services\SmmStartupThisAp\RtSmmStartupThisApBbTest.c
+  ..\SmmSCRT\Services\SmmUninstallProtocol\RtSmmUninstallProtocolBbTest.c
+
+[includes.common]
+  $(EDK_SOURCE)\Foundation\Framework
+  $(EDK_SOURCE)\Foundation
+  $(EDK_SOURCE)\Foundation\Efi
+  .
+  $(EDK_SOURCE)\Foundation\Include
+  $(EDK_SOURCE)\Foundation\Efi\Include
+  $(EDK_SOURCE)\Foundation\Framework\Include
+  $(EDK_SOURCE)\Foundation\Library\Dxe\Include
+  ..\SmmSCRT
+  $(EFI_SOURCE)\SctPkg\Include
+  $(EFI_SOURCE)\PiSctPkg\Protocol\SmmTestProtocol
+
+[libraries.common]
+  EfiCommonLib
+  EfiGuidLib
+  RtSmmTestLib
+
+[nmake.common]
+  IMAGE_ENTRY_POINT=InitializeSCRTDriver
+

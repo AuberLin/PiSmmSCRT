@@ -1,0 +1,54 @@
+#/*++
+#
+#Copyright (c) 2010, Intel Corporation
+#All rights reserved. This program and the accompanying materials
+#are licensed and made available under the terms and conditions of the Eclipse Public License
+#which accompanies this distribution.  The full text of the license may be found at
+#http://www.opensource.org/licenses/eclipse-1.0.php
+#
+#THE PROGRAM IS DISTRIBUTED UNDER THE ECLIPSE PUBLIC LICENSE (EPL) ON AN "AS IS" BASIS,
+#WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+# Module Name:
+#
+#   RtSmmTestLib.inf
+#
+# Abstract:
+#
+#   Component description file for the SMM common test library.
+#
+#--*/
+
+[defines]
+BASE_NAME       = RtSmmTestLib
+COMPONENT_TYPE  = LIBRARY
+
+[sources.common]
+  RtSmmTestLib.c
+  RtSmmTestLib.h
+
+[sources.ia32]
+  ia32\AddressConvert.c
+  
+[sources.x64]
+  x64\AddressConvert.c
+
+[includes.common]
+  .
+  $(EDK_SOURCE)\Foundation
+  $(EDK_SOURCE)\Foundation\Efi
+  $(EDK_SOURCE)\Foundation\Framework
+  $(EDK_SOURCE)\Foundation\Include
+  $(EDK_SOURCE)\Foundation\Efi\Include
+  $(EDK_SOURCE)\Foundation\Framework\Include
+  $(EDK_SOURCE)\Foundation\Include\IndustryStandard
+
+  $(EFI_SOURCE)\SctPkg\Include
+  $(EFI_SOURCE)\PiSctPkg\Protocol\SmmTestProtocol
+  ..\..\..\SCRT\SCRTDriver
+  $(EDK_SOURCE)\Foundation\Library\Dxe\Include
+  ..\..\SmmSCRT
+
+[nmake.common]
+  C_STD_INCLUDE=
